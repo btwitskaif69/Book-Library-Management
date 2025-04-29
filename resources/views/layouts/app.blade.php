@@ -11,6 +11,7 @@
     <nav class="p-4 bg-blue-500 text-white">
         <div class="container mx-auto flex justify-between">
             <h1 class="text-xl font-bold">📚 Book Library</h1>
+            <a href="/books/create" class="ml-4">Add Book</a>
             <a href="/logout" class="text-white">Logout</a>
         </div>
     </nav>
