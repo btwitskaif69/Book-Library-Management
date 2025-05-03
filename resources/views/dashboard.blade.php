@@ -41,7 +41,7 @@
 
     .book-cover {
         object-fit: cover;
-        height: 200px;
+        height: 300px;
         border-radius: 8px 8px 0 0;
     }
 
@@ -53,13 +53,10 @@
         font-size: 1.1rem;
         color: #ecf0f1; /* Light text color for card title */
         font-weight: 600;
-        margin-bottom: 10px;
     }
 
     .card-text {
         color: #bdc3c7;
-        font-size: 0.875rem;
-        line-height: 1.5;
     }
 
     .btn {
@@ -108,7 +105,7 @@
 @section('content')
 <div class="container">
     <!-- Header -->
-    <div class="header text-center py-4 px-3 rounded" style="color: white; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
+    <div class="header text-center rounded" style="color: white; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
     <h1 class="display-4 fw-medium mb-4">
     <i class="bi bi-book"></i> LibraryHub
 </h1>
@@ -177,9 +174,9 @@ const renderBookCard = (book) => `
 
             <img src="${book.image}" class="book-cover" alt="${book.title}" onerror="this.onerror=null; this.src='https://via.placeholder.com/200x300?text=No+Image';">
             <div class="card-body">
-                <h5 class="card-title text-truncate">${book.title}</h5>
-                <p class="card-text">${book.author} • ${book.year}</p>
-                <p class="card-text text-truncate small">${book.description || ''}</p>
+                <h5 class="card-title fs-3 mb-4 text-truncate">${book.title}</h5>
+                <p class="card-text fs-5 mb-0">${book.author} • ${book.year}</p>
+                <p class="card-text text-truncate fs-5">${book.description || ''}</p>
 
                 <div class="d-flex gap-2">
                     <button class="btn btn-outline-primary" onclick="showBookModal('${book._id}')">

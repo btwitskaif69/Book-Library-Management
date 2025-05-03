@@ -3,7 +3,14 @@
 @section('content')
 <style>
     html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
         background-color: #000;
+    }
+
+    .min-vh-100 {
+        min-height: 100vh;
     }
 
     .card {
@@ -39,6 +46,22 @@
 
     .btn-primary:hover {
         background-color: #0b5ed7;
+    }
+
+    .btn-light {
+        background-color: #f8f9fa;
+        border: none;
+    }
+
+    .btn-light:hover {
+        background-color: #e2e6ea;
+    }
+
+    .alert-success {
+        background-color: #28a745;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 15px;
     }
 </style>
 

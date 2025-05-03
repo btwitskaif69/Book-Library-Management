@@ -26,8 +26,8 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .footer {
-            margin-top: auto;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background-color: #000;
+            color: #fff;
         }
         .nav-link {
             transition: all 0.3s ease;
@@ -37,13 +37,7 @@
             transform: translateY(-2px);
             color: #fff !important;
         }
-        .brand-gradient {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
-        }
+        
     </style>
 </head>
 <body style="background-color: black;">
@@ -84,7 +78,7 @@
 
 
     <!-- Main Content -->
-    <main class="main-content {{ request()->is('login') || request()->is('register') ? '' : 'my-5 py-4' }}" style="background-color: black;">
+    <main class="main-content {{ request()->is('login') || request()->is('register') ? '' : 'my-0 py-0' }}" style="background-color: black;">
     <div class="container" style="background-color: black;">
         @yield('content')
     </div>
@@ -110,8 +104,8 @@
                         <p class="mb-0 text-white">
                             © {{ date('Y') }} Book Library. All Rights Reserved.
                         </p>
-                        <p class="small text-muted mt-1">
-                            Built with <i class="fas fa-heart text-danger"></i> by Your Team
+                        <p class="small mt-1">
+                            Built with <i class="fas fa-heart text-danger"></i> by btwitskaif
                         </p>
                     </div>
                 </div>

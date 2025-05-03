@@ -1,24 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-</head>
-<body>
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
-    <h2 class="text-2xl font-bold mb-4">Edit Book</h2>
-    <form id="editBookForm">
-        <input type="text" id="title" class="border p-2 w-full mb-2">
-        <input type="text" id="author" class="border p-2 w-full mb-2">
-        <input type="number" id="year" class="border p-2 w-full mb-2">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 w-full">Update Book</button>
-    </form>
+<style>
+    html, body {
+        background-color: #000;
+    }
+
+    .card {
+        background-color: black;
+        border: 1px solid #fff;
+        border-radius: 1rem;
+    }
+
+    .form-control {
+        background-color: #000;
+        color: #fff;
+        border: 1px solid #444;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .form-control::placeholder {
+        color: #888 !important;
+    }
+
+    .form-control:focus {
+        background-color: #000;
+        color: #fff;
+        border-color: #fff;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+    }
+
+    .btn-light {
+        background-color: #f8f9fa;
+        border: none;
+    }
+
+    .btn-light:hover {
+        background-color: #e2e6ea;
+    }
+
+    .alert-success {
+        background-color: #28a745;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="card text-white shadow-lg w-100" style="max-width: 500px;">
+        <div class="card-body p-4">
+            <h2 class="card-title text-center mb-4">Edit Book</h2>
+
+            <!-- Success Alert -->
+            <div id="successAlert" class="alert alert-success d-none" role="alert">
+                Book updated successfully!
+            </div>
+
+            <form id="editBookForm">
+                <div class="mb-3">
+                    <input type="text" id="title" class="form-control" placeholder="Title" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" id="author" class="form-control" placeholder="Author" required>
+                </div>
+                <div class="mb-3">
+                <textarea id="description" placeholder="Description" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="number" id="year" class="form-control" placeholder="Year" required>
+                </div>
+                <button type="submit" class="btn btn-light btn-lg w-100">
+                    Update Book
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -30,6 +98,7 @@ axios.get(`http://localhost:3000/api/books/${bookId}`, {
     const book = res.data;
     document.getElementById("title").value = book.title;
     document.getElementById("author").value = book.author;
+    document.getElementById("description").value = book.description;
     document.getElementById("year").value = book.year;
 });
 
@@ -49,6 +118,3 @@ document.getElementById("editBookForm").addEventListener("submit", function(e) {
 });
 </script>
 @endsection
-
-</body>
-</html>
