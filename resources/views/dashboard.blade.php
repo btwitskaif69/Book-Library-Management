@@ -143,16 +143,29 @@ const renderBookCard = (book, index) => `
                     <button class="btn btn-outline-primary btn-sm" onclick="showBookModal('${book._id}')">
                         <i class="fas fa-eye"></i> View
                     </button>
-                    <button class="btn btn-outline-secondary btn-sm" onclick="editBook('${book._id}')">
-                        <i class="fas fa-pencil-alt"></i> Edit
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm" onclick="deleteBook('${book._id}')">
-                        <i class="fas fa-trash-alt"></i> Delete
+                    <a href="/books/edit/${book._id}" class="btn btn-outline-secondary btn-sm">
+    <i class="fas fa-pencil-alt"></i> Edit
+</a>
+                     <button onclick="deleteBook('${book._id}')" class="btn btn-outline-danger btn-sm bi bi-trash3" title="Delete">
+                        <i class="fas fa-trash"></i> Delete
                     </button>
                 </div>
             </div>
         </div>
     </div>`;
+
+
+    function deleteBook(id) {
+    if (confirm("Are you sure you want to delete this book?")) {
+        axios.delete(`http://localhost:3000/api/books/${id}`, {
+            headers: { Authorization: "Bearer " + localStorage.getItem("token") }
+        }).then(() => {
+            location.reload();
+        }).catch(() => {
+            alert("Failed to delete book");
+        });
+    }
+}
 
 const showBookModal = (bookId) => {
     const book = allBooks.find(b => b._id === bookId);

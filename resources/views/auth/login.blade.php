@@ -1,42 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-</head>
-<body>
 @extends('layouts.app')
 
 @section('content')
-<div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="w-full max-w-sm p-8 bg-white rounded-2xl shadow-md">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Sign In</h2>
-        <form id="loginForm" class="space-y-4">
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" placeholder="Enter your email"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="password" placeholder="Enter your password"
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-            <button type="submit"
-                class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Login</button>
-            <p class="text-sm text-red-500 mt-2 text-center" id="loginError"></p>
-        </form>
+<style>
+    html, body {
+        background-color: #000;
+    }
+
+    .card {
+        background-color: black;
+        border: 1px solid #fff;
+        border-radius: 1rem;
+    }
+
+    .form-control {
+        background-color: #000;
+        color: #fff;
+        border: 1px solid #444;
+    }
+
+    .form-control::placeholder {
+        color: #888 !important;
+    }
+
+    .form-control:focus {
+        background-color: #000;
+        color: #fff;
+        border-color: #fff;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+    }
+
+    .text-muted {
+        color: #bbb !important;
+    }
+
+    .alert {
+        border-radius: 0.5rem;
+    }
+
+    a.text-white:hover {
+        text-decoration: underline;
+        color: #adb5bd;
+    }
+</style>
+
+<div class="min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="card text-white shadow-lg w-100" style="max-width: 420px;">
+        <div class="card-body p-4">
+            <h2 class="card-title text-center mb-4">Login</h2>
+
+            <p class="text-danger text-center" id="loginError"></p>
+
+            <form id="loginForm" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <input type="email" id="email" class="form-control form-control-lg" placeholder="Email" required>
+                    <div class="invalid-feedback">Please enter your email</div>
+                </div>
+
+                <div class="mb-4">
+                    <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" required>
+                    <div class="invalid-feedback">Please enter your password</div>
+                </div>
+
+                <button type="submit" class="btn btn-light btn-lg w-100 mb-3">
+                    <span class="submit-text">Login</span>
+                    <span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span>
+                </button>
+
+                <p class="text-center text-muted">
+                    Don't have an account?
+                    <a href="/register" class="text-white">Register here</a>
+                </p>
+            </form>
+        </div>
     </div>
 </div>
 
 <script>
-document.getElementById("loginForm").addEventListener("submit", function(e) {
+document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
+
+    const btn = this.querySelector('button[type="submit"]');
+    const spinner = btn.querySelector('.spinner-border');
+    const submitText = btn.querySelector('.submit-text');
+    const errorText = document.getElementById("loginError");
+
+    // Reset UI
+    errorText.innerText = '';
+    btn.disabled = true;
+    submitText.textContent = 'Logging in...';
+    spinner.classList.remove('d-none');
+
     axios.post("http://localhost:3000/api/auth/login", {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value
@@ -44,12 +106,15 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         localStorage.setItem("token", res.data.token);
         window.location.href = "/dashboard";
     }).catch(err => {
-        document.getElementById("loginError").innerText = "Invalid credentials";
+        errorText.innerText = "Invalid credentials";
+    }).finally(() => {
+        btn.disabled = false;
+        submitText.textContent = 'Login';
+        spinner.classList.add('d-none');
     });
 });
 </script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
-
-
-</body>
-</html>
