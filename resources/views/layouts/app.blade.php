@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         html, body {
             height: 100%;
@@ -45,38 +46,42 @@
         }
     </style>
 </head>
-<body class="bg-light">
+<body style="background-color: black;">
     <!-- Navbar -->
     @if (!request()->is('login') && !request()->is('register'))
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand brand-gradient" href="/">📚 Book Library</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto align-items-center">
-                        <li class="nav-item mx-2">
-                            <a class="nav-link fw-semibold" href="/">Home</a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <a class="nav-link fw-semibold" href="/books/create">
-                                <i class="fas fa-plus-circle me-1"></i>Add Book
-                            </a>
-                        </li>
-                        <li class="nav-item mx-2">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-link nav-link text-white fw-semibold p-0">
-                                    <i class="fas fa-sign-out-alt me-1"></i>Logout
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg" style="background-color: #000; box-shadow: 0 4px 12px rgba(255,255,255,0.05);">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="/" style="font-size: 1.5rem;">
+                <i class="bi bi-book me-2"></i>Book Library
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-semibold" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-semibold" href="/books/create">
+                            <i class="fas fa-plus-circle me-1"></i>Add Book
+                        </a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <form action="{{ route('logout') }}" method="POST" class="mb-0">
+                            @csrf
+                            <button type="submit" class="btn btn-link nav-link text-white fw-semibold p-0">
+                                <i class="fas fa-sign-out-alt me-1"></i>Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    @endif
+        </div>
+    </nav>
+@endif
+
+
 
     <!-- Main Content -->
     <main class="main-content {{ request()->is('login') || request()->is('register') ? '' : 'my-5 py-4' }}" style="background-color: black;">

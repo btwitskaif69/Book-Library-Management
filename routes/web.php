@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
+Route::get('/', fn () => view('dashboard'));
 Route::get('/dashboard', fn () => view('dashboard'));
 Route::get('/books/create', fn () => view('books.create'));
 Route::get('/books/edit/{id}', fn () => view('books.edit'));
