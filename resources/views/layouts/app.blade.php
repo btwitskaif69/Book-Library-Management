@@ -46,7 +46,7 @@
     <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #000; box-shadow: 0 4px 12px rgba(255,255,255,0.05);">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="/" style="font-size: 1.5rem;">
-                <i class="bi bi-book me-2"></i>Book Library
+                <i class="bi bi-book me-2"></i>LibraryHub
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
