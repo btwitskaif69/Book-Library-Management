@@ -43,7 +43,7 @@
 <body style="background-color: black;">
     <!-- Navbar -->
     @if (!request()->is('login') && !request()->is('register'))
-    <nav class="navbar navbar-expand-lg" style="background-color: #000; box-shadow: 0 4px 12px rgba(255,255,255,0.05);">
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #000; box-shadow: 0 4px 12px rgba(255,255,255,0.05);">
         <div class="container">
             <a class="navbar-brand text-white fw-bold" href="/" style="font-size: 1.5rem;">
                 <i class="bi bi-book me-2"></i>Book Library
