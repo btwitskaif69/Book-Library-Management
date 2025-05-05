@@ -1,0 +1,9 @@
+# .vercelignore
+/vendor
+/backend-server
+/routes
+/database
+/app
+/bootstrap
+/node_modules
+/resources/views
