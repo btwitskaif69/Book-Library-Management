@@ -162,7 +162,7 @@
 
 <script>
 const config = {
-    apiBaseUrl: "http://localhost:3000/api/books",
+    apiBaseUrl: "{{ env('BACKEND_URL', 'http://localhost:3000') }}/api/books",
     token: localStorage.getItem("token")
 };
 
@@ -244,7 +244,6 @@ const handleSearch = () => {
     );
     document.getElementById('bookList').innerHTML = filteredBooks.map(book => renderBookCard(book)).join('');
 };
-
 </script>
 @endsection
 </body>
