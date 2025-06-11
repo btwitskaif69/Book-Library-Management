@@ -1,12 +1,8 @@
 {
     "version": 2,
     "builds": [],
-    "outputDirectory": ".",
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/$1"
-      }
+      { "src": "/(.*)", "dest": "/$1" }
     ]
   }
   
