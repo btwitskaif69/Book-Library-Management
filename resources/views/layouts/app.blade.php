@@ -102,7 +102,7 @@
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <p class="mb-0 text-white">
-                            © {{ date('Y') }} Book Library. All Rights Reserved.
+                            © {{ date('Y') }} LibraryHub. All Rights Reserved.
                         </p>
                         <p class="small mt-1">
                             Built with <i class="fas fa-heart text-danger"></i> by btwitskaif
