@@ -85,6 +85,8 @@
 </div>
 
 <script>
+const BACKEND_URL = "{{ env('BACKEND_URL', 'http://localhost:3000') }}";
+
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -99,7 +101,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     submitText.textContent = 'Logging in...';
     spinner.classList.remove('d-none');
 
-    axios.post("http://localhost:3000/api/auth/login", {
+    axios.post(BACKEND_URL + "/api/auth/login", {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value
     }).then(res => {

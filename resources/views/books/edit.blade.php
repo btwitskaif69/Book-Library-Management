@@ -90,9 +90,10 @@
 </div>
 
 <script>
+const BACKEND_URL = "{{ env('BACKEND_URL', 'http://localhost:3000') }}";
 const bookId = window.location.pathname.split("/").pop();
 
-axios.get(`http://localhost:3000/api/books/${bookId}`, {
+axios.get(`${BACKEND_URL}/api/books/${bookId}`, {
     headers: { Authorization: "Bearer " + localStorage.getItem("token") }
 }).then(res => {
     const book = res.data;
@@ -104,9 +105,10 @@ axios.get(`http://localhost:3000/api/books/${bookId}`, {
 
 document.getElementById("editBookForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/books/${bookId}`, {
+    axios.put(`${BACKEND_URL}/api/books/${bookId}`, {
         title: document.getElementById("title").value,
         author: document.getElementById("author").value,
+        description: document.getElementById("description").value,
         year: document.getElementById("year").value
     }, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") }

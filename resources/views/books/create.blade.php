@@ -97,10 +97,12 @@
 </div>
 
 <script>
+const BACKEND_URL = "{{ env('BACKEND_URL', 'http://localhost:3000') }}";
+
 document.getElementById("createBookForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    axios.post("http://localhost:3000/api/books", {
+    axios.post(BACKEND_URL + "/api/books", {
         title: document.getElementById("title").value,
         author: document.getElementById("author").value,
         description: document.getElementById("description").value,

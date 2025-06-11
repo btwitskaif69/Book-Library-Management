@@ -95,46 +95,48 @@
 
 <!-- JavaScript Section -->
 <script>
-    document.getElementById("registerForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+const BACKEND_URL = "{{ env('BACKEND_URL', 'http://localhost:3000') }}";
 
-        const btn = this.querySelector('button[type="submit"]');
-        const spinner = btn.querySelector('.spinner-border');
-        const submitText = btn.querySelector('.submit-text');
-        const alertDiv = document.getElementById('alertContainer');
+document.getElementById("registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        // Reset UI
-        alertDiv.classList.add('d-none');
-        btn.disabled = true;
-        submitText.textContent = 'Registering...';
-        spinner.classList.remove('d-none');
+    const btn = this.querySelector('button[type="submit"]');
+    const spinner = btn.querySelector('.spinner-border');
+    const submitText = btn.querySelector('.submit-text');
+    const alertDiv = document.getElementById('alertContainer');
 
-        axios.post("http://localhost:3000/api/auth/register", {
-            username: document.getElementById("username").value.trim(),
-            email: document.getElementById("email").value.trim().toLowerCase(),
-            password: document.getElementById("password").value
-        }).then(response => {
-            showAlert('Registration successful! Redirecting...', 'success');
-            setTimeout(() => {
-                window.location.href = "/login";
-            }, 1500);
-        }).catch(err => {
-            const errorMessage = err.response?.data?.message || 'Registration failed';
-            showAlert(errorMessage, 'danger');
-            document.getElementById("password").value = '';
-        }).finally(() => {
-            btn.disabled = false;
-            submitText.textContent = 'Register';
-            spinner.classList.add('d-none');
-        });
+    // Reset UI
+    alertDiv.classList.add('d-none');
+    btn.disabled = true;
+    submitText.textContent = 'Registering...';
+    spinner.classList.remove('d-none');
+
+    axios.post(BACKEND_URL + "/api/auth/register", {
+        username: document.getElementById("username").value.trim(),
+        email: document.getElementById("email").value.trim().toLowerCase(),
+        password: document.getElementById("password").value
+    }).then(response => {
+        showAlert('Registration successful! Redirecting...', 'success');
+        setTimeout(() => {
+            window.location.href = "/login";
+        }, 1500);
+    }).catch(err => {
+        const errorMessage = err.response?.data?.message || 'Registration failed';
+        showAlert(errorMessage, 'danger');
+        document.getElementById("password").value = '';
+    }).finally(() => {
+        btn.disabled = false;
+        submitText.textContent = 'Register';
+        spinner.classList.add('d-none');
     });
+});
 
-    function showAlert(message, type) {
-        const alertDiv = document.getElementById('alertContainer');
-        alertDiv.classList.remove('d-none', 'alert-success', 'alert-danger');
-        alertDiv.classList.add(`alert-${type}`);
-        alertDiv.textContent = message;
-    }
+function showAlert(message, type) {
+    const alertDiv = document.getElementById('alertContainer');
+    alertDiv.classList.remove('d-none', 'alert-success', 'alert-danger');
+    alertDiv.classList.add(`alert-${type}`);
+    alertDiv.textContent = message;
+}
 </script>
 
 <!-- Bootstrap JS -->
