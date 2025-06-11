@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 
 const FRONTEND_URL = process.env.FRONTEND_URL; // Default to Vercel URL
-const allowedOrigins = [FRONTEND_URL, 'http://localhost:5173']; // Add both URLs
+const allowedOrigins = [FRONTEND_URL, 'http://127.0.0.1:8000']; // Add both URLs
 
 app.use(cors({
   origin: function (origin, callback) {
